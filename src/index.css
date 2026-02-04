@@ -1,65 +1,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
 :root {
   --primary-pink: #ff4d6d;
   --secondary-pink: #ff758f;
   --dark-red: #c9184a;
   --soft-pink: #fff0f3;
-  --glass: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.5);
 
   font-family: 'Outfit', system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color: #2b2d42;
-  background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%, #ffafbd 200%);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
   overflow: hidden;
 }
 
-* {
-  box-sizing: border-box;
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-h1 {
-  font-size: 3.5rem;
-  line-height: 1.1;
-  font-weight: 800;
-  margin-bottom: 2rem;
-  background: linear-gradient(to right, #ff4d6d, #c9184a);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-align: center;
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  perspective: 1000px;
 }
 
 .glass-card {
   background: var(--glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 24px;
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px 0 rgba(255, 77, 109, 0.2);
-  padding: 3rem;
-  max-width: 500px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 32px;
+  border: 2px solid var(--glass-border);
+  box-shadow: 0 15px 45px rgba(255, 77, 109, 0.2);
+  padding: 2.5rem;
+  max-width: 450px;
   width: 90%;
   text-align: center;
   position: relative;
   z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.main-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  color: var(--dark-red);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.gif-container {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.valentine-gif {
+  max-height: 100%;
+  border-radius: 15px;
 }
 
 .button-container {
@@ -68,68 +91,104 @@ h1 {
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-  min-height: 60px;
-  position: relative;
+  min-height: 100px;
 }
 
 .btn {
   padding: 0.8rem 2.5rem;
   font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 12px;
+  font-weight: 700;
+  border-radius: 50px;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .btn-yes {
-  background: var(--primary-pink);
+  background: linear-gradient(45deg, #ff4d6d, #c9184a);
   color: white;
-  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
-}
-
-.btn-yes:hover {
-  transform: scale(1.05);
-  background: var(--dark-red);
+  box-shadow: 0 5px 20px rgba(255, 77, 109, 0.4);
+  z-index: 11;
 }
 
 .btn-no {
-  background: white;
-  color: var(--primary-pink);
-  border: 2px solid var(--primary-pink);
+  background: #f8f9fa;
+  color: #666;
+  border: 1px solid #ddd;
   position: absolute;
+  white-space: nowrap;
+}
+
+.success-card {
+  border: 3px solid #ff4d6d;
+}
+
+.emoji-header {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.success-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  color: var(--dark-red);
+}
+
+.success-text {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.attempt-counter {
+  font-size: 0.9rem;
+  color: #ff758f;
+  margin-top: 2rem;
+  font-weight: 600;
 }
 
 .floating-heart {
   position: absolute;
   pointer-events: none;
-  z-index: 1;
-  opacity: 0.6;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
 }
 
-/* Success State Animations */
-@keyframes heart-pop {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.success-title {
-  color: var(--dark-red);
+.floating-emoji {
+  position: absolute;
+  top: -20px;
+  right: 20px;
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+}
+
+.footer-credits {
+  position: absolute;
+  bottom: 20px;
+  font-size: 0.8rem;
+  color: white;
+  opacity: 0.8;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.decor-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  color: var(--primary-pink);
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 2.2rem;
+  }
+
+  .glass-card {
+    padding: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.8rem;
+    font-size: 1rem;
+  }
 }
