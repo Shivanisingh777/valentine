@@ -6,16 +6,15 @@
   --secondary-pink: #ff758f;
   --dark-red: #c9184a;
   --soft-pink: #fff0f3;
-  --glass: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.5);
-
-  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  --glass: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  font-family: 'Outfit', system-ui, sans-serif;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%, #ffafbd 200%);
+  background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
   overflow: hidden;
@@ -42,47 +41,51 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  perspective: 1000px;
+  overflow: hidden;
 }
 
 .glass-card {
   background: var(--glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 32px;
   border: 2px solid var(--glass-border);
-  box-shadow: 0 15px 45px rgba(255, 77, 109, 0.2);
-  padding: 2.5rem;
-  max-width: 450px;
+  box-shadow: 0 20px 50px rgba(255, 77, 109, 0.25);
+  padding: 3rem;
+  max-width: 500px;
   width: 90%;
   text-align: center;
   position: relative;
   z-index: 10;
-  transition: transform 0.3s ease;
 }
 
 .main-title {
   font-family: 'Dancing Script', cursive;
   font-size: 3rem;
   color: var(--dark-red);
-  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.message-content {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #4a4a4a;
   margin-bottom: 2rem;
+  font-weight: 500;
 }
 
 .gif-container {
   width: 100%;
-  height: 200px;
+  height: 180px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1.5rem;
-  border-radius: 20px;
-  overflow: hidden;
+  margin-bottom: 2rem;
 }
 
 .valentine-gif {
   max-height: 100%;
-  border-radius: 15px;
+  border-radius: 12px;
 }
 
 .button-container {
@@ -91,36 +94,57 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-  min-height: 100px;
+  /* Crucial for dodging button logic to work well */
+  min-height: 150px;
+  position: relative;
+}
+
+.nav-container {
+  margin-top: 2rem;
 }
 
 .btn {
-  padding: 0.8rem 2.5rem;
-  font-size: 1.2rem;
+  padding: 0.8rem 2.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   border-radius: 50px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s;
 }
 
-.btn-yes {
-  background: linear-gradient(45deg, #ff4d6d, #c9184a);
+.btn-yes,
+.btn-next {
+  background: var(--primary-pink);
   color: white;
-  box-shadow: 0 5px 20px rgba(255, 77, 109, 0.4);
-  z-index: 11;
+  box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
 }
 
 .btn-no {
-  background: #f8f9fa;
+  background: white;
   color: #666;
   border: 1px solid #ddd;
-  position: absolute;
+  position: fixed;
+  /* Fixed relative to viewport for better dodging */
+  z-index: 100;
   white-space: nowrap;
 }
 
-.success-card {
-  border: 3px solid #ff4d6d;
+.success-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  color: var(--dark-red);
+}
+
+.footer-credits {
+  position: absolute;
+  bottom: 20px;
+  font-size: 0.9rem;
+  color: #c9184a;
+  font-weight: 600;
 }
 
 .emoji-header {
@@ -128,54 +152,12 @@ body {
   margin-bottom: 1rem;
 }
 
-.success-title {
-  font-family: 'Dancing Script', cursive;
-  font-size: 3.5rem;
-  color: var(--dark-red);
-}
-
-.success-text {
-  font-size: 1.2rem;
-  color: #555;
-  line-height: 1.6;
-}
-
-.attempt-counter {
-  font-size: 0.9rem;
-  color: #ff758f;
-  margin-top: 2rem;
-  font-weight: 600;
-}
-
-.floating-heart {
-  position: absolute;
-  pointer-events: none;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-}
-
-.floating-emoji {
-  position: absolute;
-  top: -20px;
-  right: 20px;
-  font-size: 2.5rem;
-}
-
-.footer-credits {
-  position: absolute;
-  bottom: 20px;
-  font-size: 0.8rem;
-  color: white;
-  opacity: 0.8;
-  font-weight: 500;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .decor-icons {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 1.5rem;
   color: var(--primary-pink);
+  margin-top: 2rem;
 }
 
 @media (max-width: 480px) {
@@ -183,12 +165,11 @@ body {
     font-size: 2.2rem;
   }
 
-  .glass-card {
-    padding: 1.5rem;
+  .message-content {
+    font-size: 1.1rem;
   }
 
-  .btn {
-    padding: 0.6rem 1.8rem;
-    font-size: 1rem;
+  .glass-card {
+    padding: 2rem 1.5rem;
   }
 }
