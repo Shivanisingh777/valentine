@@ -49,15 +49,21 @@ function App() {
   }, [])
 
   const handleNoHover = () => {
-    // Keep the button within safe view bounds
     const width = window.innerWidth
     const height = window.innerHeight
-    const margin = 100
 
-    // Calculate a random position that is GUARANTEED to be inside the visible area
-    // We use absolute positioning relative to the center or just random within bounds
-    const newX = (Math.random() * (width - margin * 2)) - (width / 2) + margin
-    const newY = (Math.random() * (height - margin * 2)) - (height / 2) + margin
+    // On mobile, the button should stay within a tighter range to be easily seen
+    // but still hard to click. We avoid the very edges and the top/bottom 10%.
+    const margin = width < 480 ? 40 : 100
+
+    let newX = (Math.random() * (width - margin * 2)) - (width / 2) + margin
+    let newY = (Math.random() * (height - margin * 2)) - (height / 2) + margin
+
+    // Prevent the button from being stuck right behind the "Yes" button
+    if (Math.abs(newX) < 50 && Math.abs(newY) < 50) {
+      newX += 100
+      newY += 100
+    }
 
     setNoButtonPos({ x: newX, y: newY })
     setNoCount(prev => prev + 1)
