@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Heart, Sparkles, PartyPopper, ChevronRight, ChevronLeft, Send } from 'lucide-react'
 import './App.css'
+import bubududu from '/public/bubududu.gif'
+import loveYou from '/public/i-love-you-i-missed-you.gif'
+import valentine from '/public/valentine.gif'
+import successGif from '/public/milk-and-mocha-milk-and-mocha-bear.gif'
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0)
@@ -16,13 +20,13 @@ function App() {
     {
       title: "Hey Nishant... ❤️",
       text: "I wanted to take a moment to tell you how incredibly special you are to me. Every day with you feels like a beautiful adventure.",
-      gif: "/bubududu.gif",
+      gif: bubududu,
       emoji: "🌟"
     },
     {
       title: "My Favorite Person",
       text: "From our laughs to the quiet moments, you've made my world so much brighter. I'm so lucky to have you by my side.",
-      gif: "/i-love-you-i-missed-you.gif",
+      gif: loveYou,
       emoji: "💝"
     }
   ]
@@ -95,7 +99,7 @@ function App() {
   const SuccessScreen = () => (
     <PageTransition>
       <div className="gif-container">
-        <img src="/milk-and-mocha-milk-and-mocha-bear.gif" alt="Success" className="valentine-gif" />
+        <img src={successGif} alt="Success" className="valentine-gif" />
       </div>
       <h2 className="success-title">Yay! ❤️</h2>
       <p className="success-text">
@@ -129,7 +133,7 @@ function App() {
     <PageTransition>
       <div className="gif-container">
         <img
-          src="/valentine.gif"
+          src={valentine}
           alt="Valentine"
           className="valentine-gif"
         />
