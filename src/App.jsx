@@ -14,25 +14,41 @@ function App() {
   // Custom messages for the first 2 pages
   const specialMessages = [
     {
-      title: "Hey You... ❤️",
+      title: "Hey Nishant... ❤️",
       text: "I wanted to take a moment to tell you how incredibly special you are to me. Every day with you feels like a beautiful adventure.",
-      gif: "https://media.tenor.com/S6M_p_oVdnAAAAAi/hi-hello.gif",
+      gif: "/bubududu.gif",
       emoji: "🌟"
     },
     {
       title: "My Favorite Person",
       text: "From our laughs to the quiet moments, you've made my world so much brighter. I'm so lucky to have you by my side.",
-      gif: "https://media.tenor.com/vDe-XfP_Q2EAAAAi/mochi-peach-cute-cat.gif",
+      gif: "/i-love-you-i-missed-you.gif",
       emoji: "💝"
     }
   ]
 
   const phrases = [
-    "No", "Are you sure?", "Really sure??", "Think again!", "Last chance!",
-    "Surely not?", "You might regret this!", "Give it another thought!",
-    "Are you absolutely sure?", "This could be a mistake!", "Have a heart!",
-    "Don't be so cold!", "Change of heart?", "Wouldn't you reconsider?",
-    "Is that your final answer?", "You're breaking my heart ;("
+    "No",
+    "Are you sure? 🤨",
+    "Really sure?? 🥺",
+    "Think again! 💭",
+    "Last chance! ⚠️",
+    "Surely not? 😲",
+    "You might regret this! 😢",
+    "Give it another thought! 🤔",
+    "Are you absolutely sure? 😭",
+    "This could be a mistake! 🚫",
+    "Have a heart! ❤️",
+    "Change of heart? 💝",
+    "Wouldn't you reconsider? 🥺",
+    "Is that your final answer? 😰",
+    "You're breaking my heart! ;💔",
+    "Emotional Damage! 💀",
+    "I will kill myself! 🔪",
+    "You're so mean! 😡",
+    "I'm gonna cry... 😭😭",
+    "Zahar khalu kya?? 🧪💀",
+    "You're breaking my heart ;("
   ];
 
   useEffect(() => {
@@ -49,25 +65,19 @@ function App() {
   }, [])
 
   const handleNoHover = () => {
-    const width = window.innerWidth
-    const height = window.innerHeight
+    const range = 80; // Small range to keep it near the card
 
-    // On mobile, the button should stay within a tighter range to be easily seen
-    // but still hard to click. We avoid the very edges and the top/bottom 10%.
-    const margin = width < 480 ? 40 : 100
+    // Move with an offset so it doesn't overlap the center "Yes" button
+    let newX = (Math.random() * range * 2) - range;
+    let newY = (Math.random() * range * 2) - range;
 
-    let newX = (Math.random() * (width - margin * 2)) - (width / 2) + margin
-    let newY = (Math.random() * (height - margin * 2)) - (height / 2) + margin
-
-    // Prevent the button from being stuck right behind the "Yes" button
-    if (Math.abs(newX) < 50 && Math.abs(newY) < 50) {
-      newX += 100
-      newY += 100
-    }
+    // Minimum distance from center to keep Yes button clear
+    if (Math.abs(newX) < 60) newX = newX > 0 ? 80 : -80;
+    if (Math.abs(newY) < 60) newY = newY > 0 ? 80 : -80;
 
     setNoButtonPos({ x: newX, y: newY })
     setNoCount(prev => prev + 1)
-    setYesButtonScale(prev => prev + 0.1)
+    setYesButtonScale(prev => Math.min(prev + 0.1, 2.5))
   }
 
   const PageTransition = ({ children }) => (
@@ -85,11 +95,11 @@ function App() {
   const SuccessScreen = () => (
     <PageTransition>
       <div className="gif-container">
-        <img src="https://media.tenor.com/f7SbgvF_d0YAAAAi/milk-and-mocha-bear-cuddles.gif" alt="Success" className="valentine-gif" />
+        <img src="/milk-and-mocha-milk-and-mocha-bear.gif" alt="Success" className="valentine-gif" />
       </div>
       <h2 className="success-title">Yay! ❤️</h2>
       <p className="success-text">
-        You've made me the happiest person in the world! <br />
+        You've made me the happiest person in the world, Nishant! <br />
         I love you so much! 🌹🥰
       </p>
       <div className="decor-icons">
@@ -119,12 +129,12 @@ function App() {
     <PageTransition>
       <div className="gif-container">
         <img
-          src={noCount > 5 ? "https://media.tenor.com/yS_S78rVzOwAAAAi/jump-cute.gif" : "https://media.tenor.com/tE1nS9C4nooAAAAi/q-uby-cute.gif"}
+          src="/valentine.gif"
           alt="Valentine"
           className="valentine-gif"
         />
       </div>
-      <h1 className="main-title">So... Will you be my Valentine?</h1>
+      <h1 className="main-title">So Nishant... Will you be my Valentine?</h1>
 
       <div className="button-container">
         <motion.button

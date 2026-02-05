@@ -101,12 +101,12 @@ body {
 
 .button-container {
   display: flex;
-  gap: 1rem;
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 60px;
+  min-height: 150px;
   margin-top: 1rem;
+  position: relative;
 }
 
 .btn {
@@ -128,14 +128,15 @@ body {
   color: white;
   box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
   white-space: nowrap;
+  z-index: 10;
 }
 
 .btn-no {
   background: white;
   color: #666;
   border: 1px solid #ddd;
-  position: fixed;
-  z-index: 100;
+  position: absolute;
+  z-index: 11;
   white-space: nowrap;
   pointer-events: auto;
 }
